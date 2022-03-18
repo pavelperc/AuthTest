@@ -23,6 +23,11 @@
         android:text="flavor: "
         android:textSize="20sp" />
 
+    <ImageView
+        android:id="@+id/imageViewCallingAppIcon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"/>
+
     <Button
         android:id="@+id/buttonBackToRu"
         android:layout_width="wrap_content"

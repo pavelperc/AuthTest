@@ -12,7 +12,14 @@ class AuthActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
-        textViewFlavor.text = "flavor: " + BuildConfig.FLAVOR + "\nextra " + intent.getStringExtra("extra")
+
+        val callingAppInfo = callingPackage?.let { packageManager.getApplicationInfo(it, 0) }
+        val callingAppIcon = callingAppInfo?.loadIcon(packageManager)
+        val callingAppName = callingAppInfo?.loadLabel(packageManager)
+        imageViewCallingAppIcon.setImageDrawable(callingAppIcon)
+
+        textViewFlavor.text = "flavor: " + BuildConfig.FLAVOR + "\nextra " + intent.getStringExtra("extra") +
+                "\ncalling app: $callingAppName"
         buttonBackToRu.setOnClickListener {
             setResult(RESULT_OK, Intent().putExtra("token", token()))
             finish()
